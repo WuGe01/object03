@@ -12,18 +12,24 @@ public function __construct($table){
     $this->table=$table;
     $this->pdo=new PDO($this->dsn,$this->root,$this->password);
 }
+public function all(...$arg)
+{
 
-public function all(...$arg){
-    $sql="selcet * from $this->table ";
-    if(!empty($arg[0]) && is_array($arg[0])){
+    $sql = "select * from $this->table ";
+
+    if (!empty($arg[0]) && is_array($arg[0])) {
         foreach ($arg[0] as $key => $value) {
-            $tmp[]=sprintf("`%s`='%s'",$key,$value);
+            $tmp[] = sprintf("`%s`='%s'", $key, $value);
         }
-        $sql=$sql . " where " .join(" && ",$tmp);
+
+        $sql = $sql . " where " . implode(" && ", $tmp);
     }
-    if(!empty($arg[1])){
-        $sql=$sql.$arg[1];
+
+    if (!empty($arg[1])) {
+        $sql = $sql . $arg[1];
     }
+
+    //echo $sql;
     return $this->pdo->query($sql)->fetchAll();
 }
 public function find($arg){
