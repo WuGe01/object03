@@ -1,8 +1,8 @@
 <?php
-date_default_timezone_set("Asia/Tapei");
+date_default_timezone_set("Asia/Taipei");
 session_start();
 class DB{
-private $dsn="mysal:host=localhost;charset=utf8;dbname=Web77";
+private $dsn="mysql:host=localhost;charset=utf8;dbname=db77";
 private $root ="root";
 private $password="";
 private $table;
@@ -10,7 +10,7 @@ private $pdo;
 
 public function __construct($table){
     $this->table=$table;
-    $this->pdo=new PDO($this->$dsn,$this->root,$this->password);
+    $this->pdo=new PDO($this->dsn,$this->root,$this->password);
 }
 
 public function all(...$arg){
@@ -57,10 +57,10 @@ public function save($a){
         foreach ($a as $key => $value) {
             $t[]=sprintf("`%s`='%s'",$key,$value);
         }
-        $s="update $this->table set " .join("&&",$t) . " where `id` = '".$a['id']."'";
+        $s="update $this->table set " .join(",",$t) . " where `id` = '".$a['id']."'";
 
     }else{
-        $s="insert into $this->table (`" .join("`,`",array_keys($a)) ." `) values ('" . join("','",$a) . "')";
+        $s="insert into $this->table (`" .join("`,`",array_keys($a)) ."`) values ('" . join("','",$a) . "')";
     }
     return $this->pdo->exec($s);
 }
