@@ -26,12 +26,43 @@ $rows=$po->all(['sh'=>1]," order by `rank`");
   display:flex;
   text-align: center;
 }
+.pop{
+  border: 1px solid;
+  width: 200px;
+  height: 250px;
+  margin: 20px auto;
+  position: relative;
+}
+.po{
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+.po img{
+  width: 100%;
+
+}
+.po div{
+  text-align: center;
+  background-color: white;
+  color: #000;
+}
 </style>
 <!-- 預告區 -->
     <div class="half" style="vertical-align:top;">
       <h1>預告片介紹</h1>
       <div class="rb tab" style="width:95%;">
-        <div class="pop"></div>
+        <div class="pop">
+          <?php
+            foreach ($rows as $k => $r) {
+             echo "<div class='po'>";
+             echo "<img src='./img/".$r['path']."'>";
+             echo "<div>".$r['name']."</div>";
+             echo "</div>";
+            }
+          ?>
+        </div>
         <div class="btns">
           <div class="control_btn" onclick="shift(1)">&#9664;</div>
           <div class="nav">
@@ -48,12 +79,13 @@ $rows=$po->all(['sh'=>1]," order by `rank`");
       </div>
     </div>  
   <script>
+    $(".po").eq(0).show()
     let move=0;
     let page=$('.icon').length;
     function shift(e) {
         switch (e) {
           case 1:
-            if(move<((page-4))){
+            if(move<(page-4)){
               move++
               $('.icon').animate({right:move*80})
             }
