@@ -121,8 +121,8 @@ foreach($rows as $r){
               </tr>
             </table>
             <div class="ct">
-              <input type="button" value="劇情簡介">
-              <input type="button" value="線上訂票">
+              <input type="button" value="劇情簡介" onclick="location.href='?do=active&id=<?=$r['id'];?>'">
+              <input type="button" value="線上訂票" onclick="location.href='?do=order&id=<?=$r['id'];?>'">
             </div>
           </div>
 <?php
