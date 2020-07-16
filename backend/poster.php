@@ -55,6 +55,7 @@ foreach($rows as $k => $r){
         <option value="1" <?=($r['ani']==1)?"selected":"";?>>淡入淡出</option>
         <option value="2" <?=($r['ani']==2)?"selected":"";?>>放大縮小</option>
         <option value="3" <?=($r['ani']==3)?"selected":"";?>>滑入滑出</option>
+        <option value="4" <?=($r['ani']==4)?"selected":"";?>>縮放</option>
     </select>
 </div>
 </div>

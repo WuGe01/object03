@@ -27,7 +27,7 @@ $rows=$po->all(['sh'=>1]," order by `rank`");
   text-align: center;
 }
 .pop{
-  border: 1px solid;
+  /* border: 1px solid; */
   width: 200px;
   height: 250px;
   margin: 20px auto;
@@ -48,6 +48,7 @@ $rows=$po->all(['sh'=>1]," order by `rank`");
   background-color: white;
   color: #000;
 }
+
 </style>
 <!-- 預告區 -->
     <div class="half" style="vertical-align:top;">
@@ -59,7 +60,7 @@ $rows=$po->all(['sh'=>1]," order by `rank`");
              echo "<div class='po'>";
              echo "<img src='./img/".$r['path']."'>";
              echo "<div>".$r['name']."</div>";
-             echo "<input type='hidden' name='ani' value='".$r['ani']."'>";
+             echo "<input  type='hidden' name='ani' value='".$r['ani']."'>";
              echo "</div>";
             }
           ?>
@@ -100,18 +101,6 @@ $(".icon").on('click',function () {
   let num=$('.icon').index($(this))
   $(".po").hide()
   $(".po").eq(num).show() 
-  // let ani=$(".po").eq(num).children('input').val();
-  // switch (ani) {
-  //   case "1":
-  //     $(num).fadeIn(1000)
-  //     break;
-  //   case "2":
-  //     $(num).show(1000)
-  //     break;
-  //   case "3":
-  //     $(num).slideDown(1000)
-  //     break;
-  // }
 })
 function slider() {
   let dom=$(".po:visible");
@@ -131,6 +120,17 @@ function slider() {
     case "3":
       $(dom).slideUp(1000,()=>{
         $(next).slideDown(1000)
+      })
+      break;
+    case "4":
+      $(dom).animate({width:0,height:0,left:$(dom).width()/2,top:$(dom).height()/2},()=>{
+        let h=$(next).height()
+        let w=$(next).width()
+        $(next).css({width:0,height:0,left:$(next).width()/2,top:$(next).height()/2})
+        $(next).show()
+        $(dom).hide()
+        $(dom).css({width:w,height:h,left:0,top:0})
+        $(next).animate({width:w,height:h,left:0,top:0})
       })
       break;
   }

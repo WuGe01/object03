@@ -17,8 +17,8 @@ include "./plugins/base.php";
     <h1>ABC影城</h1>
   </div>
   <div id="top2"> 
-  <a href="?do=main">首頁</a> 
-    <a href="?do=active">線上訂票</a> 
+  <a href="index.php?do=main">首頁</a> 
+    <a href="index.php?do=active">線上訂票</a> 
     <a href="#">會員系統</a> 
     <a href="index.php">管理系統</a> </div>
   <div id="text"> <span class="ct">最新活動</span>
