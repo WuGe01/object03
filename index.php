@@ -19,7 +19,7 @@ include "./plugins/base.php";
     <a href="?do=main">首頁</a> 
     <a href="?do=active">線上訂票</a> 
     <a href="#">會員系統</a> 
-    <a href="?do=pre">管理系統</a> </div>
+    <a href="admin.php">管理系統</a> </div>
   <div id="text"> 
     <span class="ct">最新活動</span>
     <marquee direction="right">
