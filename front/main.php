@@ -48,7 +48,13 @@ $rows=$po->all(['sh'=>1]," order by `rank`");
   background-color: white;
   color: #000;
 }
+.md{
+  display: inline-block;
 
+  width: 48%;
+  margin: 0.75%;
+  height:160px;
+}
 </style>
 <!-- 預告區 -->
     <div class="half" style="vertical-align:top;">
@@ -81,6 +87,60 @@ $rows=$po->all(['sh'=>1]," order by `rank`");
         </div>
       </div>
     </div>  
+    <!-- 院線片區 -->
+    <div class="half">
+      <h1>院線片清單</h1>
+      <div class="rb tab" style="width:95%;">
+<?php
+$db=new DB('movie');
+$today=date("Y-m-d");
+$ondate=date("Y-m-d",strtotime("-2 days"));
+$div=4;
+$total=$db->count(['sh'=>1]," && `ondate` >= '$ondate' && `ondate` <= '$today'");
+$page=ceil($total/$div);
+$now=(!empty($_GET['p']))?$_GET['p']:1;
+$start=($now-1)*$div;
+$rows=$db->all(['sh'=>1]," && `ondate` >= '$ondate' && `ondate` <= '$today' order by rank limit $start,$div");
+
+foreach($rows as $r){
+?>
+          <div class="md">
+            <a href="?do=active&id=<?=$r['id'];?>">
+              <img src="img/<?=$r['intro'];?>" style="width: 80px;height: 100px;float: left;">
+            </a>
+            <table>
+              <tr>
+                <td>片名:<?=$r['name'];?>
+                  </td>
+              </tr>
+              <tr>
+                <td>分類:<img src="img/03C0<?=$r['level'];?>.png"></td>
+              </tr>
+              <tr>
+                <td>上映時間:<?=$r['ondate'];?></td>
+              </tr>
+            </table>
+            <div class="ct">
+              <input type="button" value="劇情簡介">
+              <input type="button" value="線上訂票">
+            </div>
+          </div>
+<?php
+}
+?>
+      <div class="ct">
+        
+<?php
+        for($i=1;$i<=$page;$i++){
+          $front=($i==$now)?'24px':'18px';
+          echo "<a href='?p=$i' style='font-size:$front;text-decoration:none;'>$i</a>";
+        }
+
+?>
+      </div>
+      </div>
+    </div>
+
 <script>
 $(".po").eq(0).show()
 let move=0;
@@ -152,16 +212,3 @@ function shift(e) {
     }
 }
   </script>
-    <!-- 院線片區 -->
-    <div class="half">
-      <h1>院線片清單</h1>
-      <div class="rb tab" style="width:95%;">
-        <table>
-          <tbody>
-            <tr> </tr>
-          </tbody>
-        </table>
-        <div class="ct"> </div>
-      </div>
-    </div>
-

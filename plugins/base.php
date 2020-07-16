@@ -1,6 +1,12 @@
 <?php
 date_default_timezone_set("Asia/Taipei");
 session_start();
+$level=[
+    1=>'普遍級',
+    2=>'輔導級',
+    3=>'保護級',
+    4=>'限制級'
+];
 class DB{
 private $dsn="mysql:host=localhost;charset=utf8;dbname=db77";
 private $root ="root";
@@ -48,7 +54,7 @@ public function find($arg){
 public function count(...$a){
     $s="select count(*) from $this->table ";
     if(!empty($a[0]) && is_array($a[0])){
-        foreach ($a as $key => $value) {
+        foreach ($a[0] as $key => $value) {
             $t[]=sprintf("`%s`='%s'",$key,$value);
         }
         $s=$s . " where " .join("&&",$t);
@@ -57,7 +63,7 @@ public function count(...$a){
         $s=$s.$a[1];
     }
     return $this->pdo->query($s)->fetchColumn();
-}    
+}  
 public function save($a){
     if(!empty($a['id'])){
         foreach ($a as $key => $value) {

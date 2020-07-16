@@ -19,11 +19,10 @@ $db=new DB('movie');
 $rows=$db->all([],' order by rank');
 foreach($rows as $r){
 
-
 ?>
 
         <div class="move_item">
-            <div style="display: inline-block;vertical-align: top;width: 15%;"><img style="height: 120px;" src="./img/<?=$r['intro'];?>" alt=""></div><div style="display: inline-block;vertical-align: top;width: 10%;">
+            <div style="display: inline-block;vertical-align: top;width: 15%;"><img style="height: 120px;" src="./img/<?=$r['intro'];?>" alt=""></div><div style="display: inline-block;vertical-align: bottom;width: 10%;">
                 分類:<img  src="./img/03C0<?=$r['level'];?>.png" ></div><div style="display: inline-block;vertical-align: top;width: 75%;">
                 <div>
                     <div style="display: inline-block;vertical-align: top;width: 32%;">片名：<?=$r['name'];?></div>
