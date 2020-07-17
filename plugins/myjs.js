@@ -23,3 +23,8 @@ function show(t,id) {
         location.reload()
     })
 }
+function reloadlist() {
+    $.get("./backend/movie_list.php",(e)=>{
+       $('.list').html(e)
+    })
+ }
