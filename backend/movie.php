@@ -36,7 +36,7 @@ foreach($rows as $k => $r){
                     <input onclick="show('movie',<?=$r['id'];?>)" type="button" value="<?=$KK;?>">
                     <input class="movieUPdo" data-rank="<?=$r['id']."-".$prev;?>" type="button" value="往上">
                     <input class="movieUPdo" data-rank="<?=$r['id']."-".$next;?>" type="button" value="往下">
-                    <input onclick="edit('movie',<?=$r['id'];?>)" type="button" value="編輯電影">
+                    <input onclick="location.href='?do=edit_movie&id=<?=$r['id'];?>'" type="button" value="編輯電影">
                     <input onclick="del('movie',<?=$r['id'];?>)" type="button" value="刪除電影">
                 </div>
                 <div>簡介:<?=$r['director'];?></div>
