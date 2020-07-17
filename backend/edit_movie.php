@@ -64,13 +64,12 @@ for ($i=1; $i < 5; $i++) {
                         echo "</option>";
                     }
                     ?>
-                
                 </select>年
                 <select name="month" >
                 <?php
                     for($i=1;$i<=12;$i++){
                         $chk=($i==$is_Select['1'])?'selected':'';
-                        echo "<option value='".$i."' ".$chk.">";
+                        echo "<option ".$chk.">";
                         echo $i;
                         echo "</option>";
                     }
@@ -80,7 +79,7 @@ for ($i=1; $i < 5; $i++) {
                 <?php
                     for($i=1;$i<=31;$i++){
                         $chk=($i==$is_Select['2'])?'selected':'';
-                        echo "<option value='".$i."' ".$chk.">";
+                        echo "<option ".$chk.">";
                         echo $i;
                         echo "</option>";
                     }

@@ -86,7 +86,7 @@ if(file_exists($file)){
 
 
   </div>
-  <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
+  <div id="bo"> ©Copyright 2010~2020 ABC影城 版權所有 </div>
 </div>
 </body>
 </html>
