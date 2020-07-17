@@ -17,8 +17,9 @@
 <?php
 $db=new DB('movie');
 $rows=$db->all([],' order by rank');
-foreach($rows as $r){
-
+foreach($rows as $k => $r){
+    $prev=($k!=0)?$rows[$k-1]['id']:$r['id'];
+    $next=($k!=(count($rows)-1))?$rows[$k+1]['id']:$r['id'];
 ?>
 
         <div class="move_item">
@@ -29,7 +30,13 @@ foreach($rows as $r){
                     <div style="display: inline-block;vertical-align: top;width: 32%;">片長:<?=$r['lenght'];?></div>
                     <div style="display: inline-block;vertical-align: top;width: 32%;">上映時間:<?=$r['ondate'];?></div>
                 </div>
-                <div>功能按紐</div>
+                <div>
+                    <input onclick="show('movie',<?=$r['id'];?>)" type="button" value="顯示">
+                    <input class="movieUPdo" data-rank="<?=$r['id']."-".$prev;?>" type="button" value="往上">
+                    <input class="movieUPdo" data-rank="<?=$r['id']."-".$next;?>" type="button" value="往下">
+                    <input onclick="edit('movie',<?=$r['id'];?>)" type="button" value="編輯電影">
+                    <input onclick="del('movie',<?=$r['id'];?>)" type="button" value="刪除電影">
+                </div>
                 <div>簡介:<?=$r['director'];?></div>
             </div>
         </div>

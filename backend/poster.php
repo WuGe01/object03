@@ -82,16 +82,3 @@ foreach($rows as $k => $r){
 </form>
 
 </div>
-<script>
-
-$(".popUPdo").on("click",function(){
-    let id=$(this).data("rank").split('-')
-    console.log('id');
-    let table="pop";
-    $.post("./api/rank.php",{id,table},function(){
-        location.reload();
-    })
-})
-
-
-</script>

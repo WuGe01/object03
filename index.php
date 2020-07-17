@@ -9,6 +9,7 @@ include "./plugins/base.php";
 <title>影城</title>
 <link rel="stylesheet" href="./plugins/css.css">
 <script src="./plugins/jquery-1.9.1.min.js"></script>
+<script src="./plugins/myjs.js"></script>
 </head>
 <body>
 <div id="main">

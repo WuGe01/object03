@@ -114,7 +114,7 @@ foreach($rows as $r){
                   </td>
               </tr>
               <tr>
-                <td>分類:<img src="img/03C0<?=$r['level'];?>.png"></td>
+                <td><img src="img/03C0<?=$r['level'];?>.png"><?=$level[$r['level']];?></td>
               </tr>
               <tr>
                 <td>上映時間:<?=$r['ondate'];?></td>
