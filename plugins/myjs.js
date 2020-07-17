@@ -18,3 +18,8 @@ $(".popUPdo").on("click",function(){
         location.reload();
     })
 })
+function show(t,id) {
+    $.post("./api/show.php",{"table":t,id},()=>{
+        location.reload()
+    })
+}

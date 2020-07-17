@@ -11,7 +11,7 @@
     }
 </style>
 <div style="width: 80%;height: 480px;margin: auto;background-color: #CCC;padding: 20px;border-radius: 5px;">
-    <input type="button" value="新增電影">
+    <input type="button" onclick="location.href='?do=add_movice'" value="新增電影">
     <hr>
     <div class="list">
 <?php
@@ -20,6 +20,7 @@ $rows=$db->all([],' order by rank');
 foreach($rows as $k => $r){
     $prev=($k!=0)?$rows[$k-1]['id']:$r['id'];
     $next=($k!=(count($rows)-1))?$rows[$k+1]['id']:$r['id'];
+    $KK=($r['sh']==1)?'顯示':'隱藏';
 ?>
 
         <div class="move_item">
@@ -31,7 +32,8 @@ foreach($rows as $k => $r){
                     <div style="display: inline-block;vertical-align: top;width: 32%;">上映時間:<?=$r['ondate'];?></div>
                 </div>
                 <div>
-                    <input onclick="show('movie',<?=$r['id'];?>)" type="button" value="顯示">
+ 
+                    <input onclick="show('movie',<?=$r['id'];?>)" type="button" value="<?=$KK;?>">
                     <input class="movieUPdo" data-rank="<?=$r['id']."-".$prev;?>" type="button" value="往上">
                     <input class="movieUPdo" data-rank="<?=$r['id']."-".$next;?>" type="button" value="往下">
                     <input onclick="edit('movie',<?=$r['id'];?>)" type="button" value="編輯電影">
