@@ -237,32 +237,3 @@ input:focus
 #abgne-block-20111227 .controls li.selected a {
 	background: #87bf00;
 }
-.list{
-	overflow: auto;
-	width: 95%;
-	background-color: #eee;
-	margin: auto;
-	height: 420px;    
-}
-.move_item{
-	height: 130px;
-}
-.inBox{
-	width: 19%;
-	vertical-align: top;
-}
-.inBox2{
-	width: 79%;
-	vertical-align: top;
-}
-.aa{
-	width: 95%;
-	margin: auto;
-	background-color: #ccc;
-}
-.a{
-	display: flex;
-}   
-.inBox2 > div{
-	margin-bottom: 1px;
-}

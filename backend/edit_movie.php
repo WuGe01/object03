@@ -47,7 +47,6 @@ for ($i=1; $i < 5; $i++) {
     echo "<option value='".$i."' ".$chk.">".$level[$i]."</option>";
 }
 ?>
-
                 </select>
             </div>
             <div>片長:
