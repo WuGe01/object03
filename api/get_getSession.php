@@ -16,6 +16,7 @@ $se=[
 
 if(strtotime($movie_date)==$today){
     $now=floor((date('G')-12)/2);
+    if($now<0)$now=0;
     for($i=($now+1);$i<=5;$i++){
         echo "<option value='".$i."'>".$se[$i]."</option>";
     }

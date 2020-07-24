@@ -4,7 +4,7 @@
     }
 </style>
 
-<div style="margin:auto ;width: 80%;">
+<div class="order-form" style="margin:auto ;width: 80%;">
 <form>
     <h3 class="ct" style="margin-top: 5px;">線上訂票</h3>
     <table class="table" border="1">
@@ -42,12 +42,90 @@ foreach($rows as $r){
         </tr>
 
         <tr>
-            <td colspan="2" class="ct"><input type="button" value="確定"><input type="reset" value="重置"></td>
+            <td colspan="2" class="ct"><input type="button" onclick="booking()" value="確定"><input type="reset" value="重置"></td>
         </tr>
     </table>
 </form>
 </div>
+<style>
+.room{
+    width:320px;
+    height:320px;
+    display:flex;
+    margin: auto;
+    flex-wrap:wrap;
+    background: url("./img/XX1-01.jpg") no-repeat center;  
+}
+.room>div{
+    width:64px;
+    height:80px;
+    position:relative;
+    /* background:green; */
+}
+.null{
+   background: url("./img/03D02.png") no-repeat center;  
+}
+.booked{
+   background: url("./img/03D03.png") no-repeat center;  
+}
+.checkbox{
+    position: absolute;
+    right: 0px;
+    bottom: 5px;
+}
+</style>
+
+<div class="booking-form ct" style="display:none;margin:auto ;width: 80%;">
+
+<div class="room">
+
+</div>
+<div class="info-block"></div>
+<div class="info" style="margin:auto;">
+    <p>您選擇的電影是:<span id="movieinfo"></span></p>
+    <p>您選擇的時刻是:<span id="dateinfo"></span></p>
+    <p>您以勾選<span id="ticket"></span>張票，最多可以購買四張票</p>
+</div>
+<input type="button" onclick="booking()" value="上一步">
+<input type="button" onclick="" value="訂購">
+</div>
+
+
 <script>
+let ticket=0;
+function booking() {
+    let movie=$('#movie').find("option:selected").html();
+    let date=$('#date').val();
+    let session=$('#session').find("option:selected").html();
+    $('#movieinfo').html(`${movie}`);
+    $('#dateinfo').html(`${date}  ${session}`);
+    $.get("./api/get_room.php",(e)=>{
+        $('.room').html(e);
+    })
+    $(".order-form").toggle(1000);
+    $(".booking-form").toggle(1000);
+    ticket=0;
+}
+let seat=new Array();
+function chkTicket(e) {
+    
+    if(e.checked==true){
+        ticket++;
+        seat.push(e.value);
+    }else{
+        ticket--;
+        seat.splice(seat.indexOf(e.value),1);
+    } 
+    if(ticket>4){
+        e.checked = false;
+        ticket=4;
+        seat.splice(seat.indexOf(e.value),1);
+        alert("一次最多只能訂四張票");
+    }
+    console.log(seat)
+    $("#ticket").html(ticket);
+}
+
 getDuration()
 $("#movie").on("change",function(){
     getDuration()
