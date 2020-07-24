@@ -17,7 +17,7 @@ $data['seat']=json_encode($seat);
 $daNo=$db_moive->q("select max(`id`) from `ord`")[0][0]+1;
 $dateNo=date("Ymd");
 $data['no']=$dateNo.sprintf("%04d",$daNo);
-print_r($data);
+echo $data['no'];
 $db=new DB('ord');
 $db->save($data);
 ?>

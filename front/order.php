@@ -99,7 +99,7 @@ $("#send").on("click",()=>{
     let date=$('#date').val();
     let session=$('#session').find("option:selected").val();
     $.post("./api/order.php",{seat,movie,session,date,movieName},function (e) {
-        console.log(e)
+        location.replace(`index.php?do=resulit&&no=${e}`)
     })
 })
 function booking() {
@@ -151,8 +151,10 @@ function getDuration() {
 }
 function getSession() {
     let id=$('#movie').val();
+    let movieName=$('#movie').html();
     let date=$('#date').val();
-    $.get('./api/get_getSession.php',{id,date},(e)=>{
+
+    $.get('./api/get_getSession.php',{id,date,movieName},(e)=>{
         $('#session').html(e);
     })
 }
