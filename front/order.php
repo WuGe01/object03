@@ -87,12 +87,21 @@ foreach($rows as $r){
     <p>您以勾選<span id="ticket"></span>張票，最多可以購買四張票</p>
 </div>
 <input type="button" onclick="booking()" value="上一步">
-<input type="button" onclick="" value="訂購">
+<input type="button" id="send" value="訂購">
 </div>
 
 
 <script>
 let ticket=0;
+$("#send").on("click",()=>{
+    let movie=$('#movie').find("option:selected").val();
+    let movieName=$('#movie').find("option:selected").html();
+    let date=$('#date').val();
+    let session=$('#session').find("option:selected").val();
+    $.post("./api/order.php",{seat,movie,session,date,movieName},function (e) {
+        console.log(e)
+    })
+})
 function booking() {
     let movie=$('#movie').find("option:selected").html();
     let date=$('#date').val();
