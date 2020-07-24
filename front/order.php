@@ -106,9 +106,10 @@ function booking() {
     let movie=$('#movie').find("option:selected").html();
     let date=$('#date').val();
     let session=$('#session').find("option:selected").html();
+    let sessionval=$('#session').find("option:selected").val();
     $('#movieinfo').html(`${movie}`);
     $('#dateinfo').html(`${date}  ${session}`);
-    $.get("./api/get_room.php",(e)=>{
+    $.get("./api/get_room.php",{movie,date,sessionval},(e)=>{
         $('.room').html(e);
     })
     $(".order-form").toggle(1000);
@@ -121,15 +122,22 @@ function chkTicket(e) {
     if(e.checked==true){
         ticket++;
         seat.push(e.value);
+        $(e).parent().removeClass("null")
+        $(e).parent().addClass("booked")
     }else{
         ticket--;
         seat.splice(seat.indexOf(e.value),1);
+        $(e).parent().removeClass("booked")
+        $(e).parent().addClass("null")
+
     } 
     if(ticket>4){
         e.checked = false;
         ticket=4;
         seat.splice(seat.indexOf(e.value),1);
         alert("一次最多只能訂四張票");
+        $(e).parent().removeClass("booked")
+        $(e).parent().addClass("null")
     }
     console.log(seat)
     $("#ticket").html(ticket);
