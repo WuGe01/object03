@@ -13,16 +13,18 @@ if(strtotime($movie_date)==$today){
     $now=floor((date('G')-12)/2);
     if($now<0)$now=0;
     for($i=($now+1);$i<=5;$i++){
-        $qt=$db_ord->q("select SUM(qt) from `ord` where `movie` = '".$movie['name']."' && `session` = '".$se[$i]."'");
-        echo "<option value='".$i."'>".$se[$i]."剩餘座位:".$qt[0][0]."</option>";
-        print_r($qt);
+
+        $qt=$db_ord->q("select SUM(qt) from `ord` where `movie` = '".$movieName."' && `date` = '".$movie_date."' && `session` = '".$se[$i]."'")[0][0];
+        echo "<option value='".$i."'>".$se[$i]."剩餘座位:".(20-$qt)."</option>";
+
         
     }
 }else{
     for($i=1;$i<=5;$i++){
-        $qt=$db_ord->q("select SUM(qt) from `ord` where `movie` = '".$movie['name']."' && `session` = '".$se[$i]."'");
-        echo "<option value='".$i."'>".$se[$i]."剩餘座位:".$qt[0][0]."</option>";
-        print_r($qt);
+        $qt=$db_ord->q("select SUM(qt) from `ord` where `movie` = '".$movieName."' && `date` = '".$movie_date."' && `session` = '".$se[$i]."'")[0][0];
+        echo "<option value='".$i."'>".$se[$i]."剩餘座位:".(20-$qt)."</option>";
+
+
     }
 }
 ?>

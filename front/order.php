@@ -151,7 +151,7 @@ function getDuration() {
 }
 function getSession() {
     let id=$('#movie').val();
-    let movieName=$('#movie').html();
+    let movieName=$('#movie').find('option:selected').html();
     let date=$('#date').val();
 
     $.get('./api/get_getSession.php',{id,date,movieName},(e)=>{
